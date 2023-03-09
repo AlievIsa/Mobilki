@@ -1,5 +1,6 @@
 package com.example.project1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.Placeholder;
 import androidx.fragment.app.Fragment;
@@ -15,17 +16,28 @@ import android.widget.TextView;
 
 public class DisplayMessageActivity extends AppCompatActivity {
 
+    String currentMessageText, previousMessageText;
+    static final String PREVIOUS_MESSAGE = "previousMessage";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_display_message);
         // Получение сообщения из Intent
         Intent intent = getIntent();
+        currentMessageText = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        // Создание объекта TextView для вывода текущего сообщения
+        TextView currentMessage = findViewById(R.id.current_message_text);
+        currentMessage.setText(currentMessageText);
 
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        // Создание объекта textView
-        TextView textView = findViewById(R.id.current_message_text);
-        textView.setText(message);
+        // Создание объекта TextView для вывода предыдущего сообщения
+        TextView previousMessage = findViewById(R.id.previous_message_text);
+        if (savedInstanceState != null) {
+            previousMessageText = savedInstanceState.getString(PREVIOUS_MESSAGE);
+            previousMessage.setText(previousMessageText);
+        } else {
+
+        }
+
 //        textView.setTextSize(40);
 //        textView.setGravity(Gravity.CENTER);
 
@@ -41,7 +53,13 @@ public class DisplayMessageActivity extends AppCompatActivity {
 //        }
     }
 
-//    @Override
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString(PREVIOUS_MESSAGE, currentMessageText);
+    }
+
+    //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
 //        int id = item.getItemId();
 //        if (id == R.id.action_settings) {
