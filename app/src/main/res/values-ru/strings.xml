@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Мой проект</string>
+    <string name="edit_message">Отправить сообщение</string>
+    <string name="button_send">Отправить</string>
+    <string name="actions_settings">Настройки</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_display_message">Мое сообщение</string>
+    <string name="show_version">Показать версию ОС</string>
+    <string name="toast_text">Версия Андройд:</string>
+    <string name="previous_message">Предыдущее сообщение:</string>
+    <string name="current_message">Текущее сообщение:</string>
+</resources>
